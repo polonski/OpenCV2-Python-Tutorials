@@ -15,7 +15,7 @@ Basics
 
 So what we did in last session? We used a queryImage, found some feature points in it, we took another trainImage, found the features in that image too and we found the best matches among them. In short, we found locations of some parts of an object in another cluttered image. This information is sufficient to find the object exactly on the trainImage.
 
-For that, we can use a function from calib3d module, ie **cv2.findHomography()**. If we pass the set of points from both the images, it will find the perpective transformation of that object. Then we can use **cv2.perspectiveTransform()** to find the object. It needs atleast four correct points to find the transformation.
+For that, we can use a function from calib3d module, ie **cv2.findHomography()**. If we pass the set of points from both the images, it will find the perspective transformation of that object. Then we can use **cv2.perspectiveTransform()** to find the object. It needs atleast four correct points to find the transformation.
 
 We have seen that there can be some possible errors while matching which may affect the result. To solve this problem, algorithm uses RANSAC or LEAST_MEDIAN (which can be decided by the flags). So good matches which provide correct estimation are called inliers and remaining are called outliers. **cv2.findHomography()** returns a mask which specifies the inlier and outlier points.
 
@@ -61,7 +61,7 @@ First, as usual, let's find SIFT features in images and apply the ratio test to 
 
 Now we set a condition that atleast 10 matches (defined by MIN_MATCH_COUNT) are to be there to find the object. Otherwise simply show a message saying not enough matches are present.
 
-If enough matches are found, we extract the locations of matched keypoints in both the images. They are passed to find the perpective transformation. Once we get this 3x3 transformation matrix, we use it to transform the corners of queryImage to corresponding points in trainImage. Then we draw it.
+If enough matches are found, we extract the locations of matched keypoints in both the images. They are passed to find the perspective transformation. Once we get this 3x3 transformation matrix, we use it to transform the corners of queryImage to corresponding points in trainImage. Then we draw it.
 ::
 
     if len(good)>MIN_MATCH_COUNT:
